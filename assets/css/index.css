@@ -1,0 +1,12 @@
+body {
+    font-family: "Noto Serif", serif;
+    text-align: center;
+    background-color: #ffe8bc;
+}
+
+h1 {
+    font-size: 3em;
+    margin-top: 3rem;
+    margin-bottom: 0;
+    color: #3d3d3d;
+}
