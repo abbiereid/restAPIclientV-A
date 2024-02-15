@@ -10,3 +10,16 @@ h1 {
     margin-bottom: 0;
     color: #3d3d3d;
 }
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    color: #565555;
+}
+
+#searchBar {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
