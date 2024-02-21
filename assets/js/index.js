@@ -2,7 +2,12 @@ window.addEventListener('load', () => {
     const searchForm = document.querySelector('.search form');
     const searchInput = document.querySelector('#searchBar');
 
-    searchForm.addEventListener('submit', (event) => {
+    // searchForm.addEventListener('submit', (event) => {
+    //     event.preventDefault();
+    //     search(event, searchInput.value);
+    // });
+
+    searchForm.addEventListener('keyup', (event) => {
         event.preventDefault();
         search(event, searchInput.value);
     });
@@ -20,14 +25,19 @@ async function search(event, input) {
 
             results.forEach(result => {
 
+                //create individual result container
+                const individualResult = document.createElement('div');
+                individualResult.classList.add('individualResult');
+                resultsContainer.appendChild(individualResult);
+
                 //result title
                 const resultTitle = document.createElement('h2');
-                if (result._primaryTitle === undefined) {
+                if (result._primaryTitle === '') {
                     resultTitle.textContent = 'No title available';
                 } else {
                     resultTitle.textContent = result._primaryTitle;
                 }
-                resultsContainer.appendChild(resultTitle);
+                individualResult.appendChild(resultTitle);
 
                 //----------------------------------------------
 
@@ -38,7 +48,7 @@ async function search(event, input) {
                 } else {
                     resultImage.src = result._images._primary_thumbnail;
                 }
-                resultsContainer.appendChild(resultImage);
+                individualResult.appendChild(resultImage);
 
                 //----------------------------------------------
 
@@ -49,7 +59,7 @@ async function search(event, input) {
                 } else {
                     resultDate.textContent = result._primaryDate;
                 }
-                resultsContainer.appendChild(resultDate);
+                individualResult.appendChild(resultDate);
 
                 //----------------------------------------------
             });
