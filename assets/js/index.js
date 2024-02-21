@@ -43,7 +43,8 @@ async function search(event, input) {
 
                 //result image
                 const resultImage = document.createElement('img');
-                if ((result._images._primary_thumbnail) === '') {
+                
+                if ((result._images._primary_thumbnail) === undefined) {
                     resultImage.src = 'https://via.placeholder.com/80';
                 } else {
                     resultImage.src = result._images._primary_thumbnail;
@@ -53,7 +54,7 @@ async function search(event, input) {
                 //----------------------------------------------
 
                 //result description
-                const resultDate = document.createElement('p');
+                const resultDate = document.createElement('h3');
                 if (result._primaryDate === '') {
                     resultDate.textContent = 'No date available';
                 } else {
@@ -64,7 +65,7 @@ async function search(event, input) {
                 //----------------------------------------------
 
                 //result place
-                const resultPlace = document.createElement('p');
+                const resultPlace = document.createElement('h3');
                 if (result._primaryPlace === '') {
                     resultPlace.textContent = 'No place available';
                 } else {
