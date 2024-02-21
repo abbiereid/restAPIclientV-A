@@ -43,7 +43,7 @@ async function search(event, input) {
 
                 //result image
                 const resultImage = document.createElement('img');
-                if ((result._images._primary_thumbnail) === undefined) {
+                if ((result._images._primary_thumbnail) === '') {
                     resultImage.src = 'https://via.placeholder.com/80';
                 } else {
                     resultImage.src = result._images._primary_thumbnail;
@@ -54,12 +54,23 @@ async function search(event, input) {
 
                 //result description
                 const resultDate = document.createElement('p');
-                if (result._primaryDate === undefined) {
-                    resultDate.textContent = 'No description available';
+                if (result._primaryDate === '') {
+                    resultDate.textContent = 'No date available';
                 } else {
                     resultDate.textContent = result._primaryDate;
                 }
                 individualResult.appendChild(resultDate);
+
+                //----------------------------------------------
+
+                //result place
+                const resultPlace = document.createElement('p');
+                if (result._primaryPlace === '') {
+                    resultPlace.textContent = 'No place available';
+                } else {
+                    resultPlace.textContent = result._primaryPlace;
+                }
+                individualResult.appendChild(resultPlace);
 
                 //----------------------------------------------
             });
