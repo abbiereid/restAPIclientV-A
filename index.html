@@ -15,12 +15,22 @@
 
     <h1>Victoria and Albert Museum</h1>
     <h2>Enjoy browsing the collection!</h2>
+
     <div class="search">
         <form>
-            <input id ="searchBar" type="text" name="search" placeholder="Search..">
-            <!--<button id = "searchButton" type="submit">Search</button>-->
+            <input id="searchBar" type="text" name="search" placeholder="Search..">
+            <!--<button id="searchButton" type="submit">Search</button>-->
         </form>
+        <div class="dropdown">
+            <button id="filterButton" type="button">Filter</button>
+            <div class="dropdown-content">
+                <a id="placeFilter">Place</a>
+                <!--Maybe add an input so the user can enter what they want to filter for-->
+                <!--Need to research other filter options-->
+            </div>
+        </div>
     </div>
+    
 
     <div class="results"></div>
 
