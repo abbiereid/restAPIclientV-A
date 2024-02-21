@@ -19,9 +19,39 @@ async function search(event, input) {
             resultsContainer.textContent = '';
 
             results.forEach(result => {
-                const resultElement = document.createElement('p');
-                resultElement.textContent = JSON.stringify(result);
-                resultsContainer.appendChild(resultElement);
+
+                //result title
+                const resultTitle = document.createElement('h2');
+                if (result._primaryTitle === undefined) {
+                    resultTitle.textContent = 'No title available';
+                } else {
+                    resultTitle.textContent = result._primaryTitle;
+                }
+                resultsContainer.appendChild(resultTitle);
+
+                //----------------------------------------------
+
+                //result image
+                const resultImage = document.createElement('img');
+                if ((result._images._primary_thumbnail) === undefined) {
+                    resultImage.src = 'https://via.placeholder.com/80';
+                } else {
+                    resultImage.src = result._images._primary_thumbnail;
+                }
+                resultsContainer.appendChild(resultImage);
+
+                //----------------------------------------------
+
+                //result description
+                const resultDate = document.createElement('p');
+                if (result._primaryDate === undefined) {
+                    resultDate.textContent = 'No description available';
+                } else {
+                    resultDate.textContent = result._primaryDate;
+                }
+                resultsContainer.appendChild(resultDate);
+
+                //----------------------------------------------
             });
         })
         .catch(error => console.log(error));
