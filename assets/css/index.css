@@ -24,8 +24,11 @@ h2 {
 }
 
 .individualResult {
-    background-color: #f5ba68;
+    background-color: #efdfc8;
     border-radius: 5rem;
+    border-width: 0.5rem;
+    border-style: solid;
+    border-color: #565555;
     padding: 1rem;
     margin: 1rem;
 }
