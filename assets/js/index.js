@@ -79,11 +79,44 @@ async function search(event, input) {
                     individualResult.appendChild(resultPlace);
     
                     //----------------------------------------------
+
+                    //result description
+
+                    const resultMaker = document.createElement('p');
+                    if (result._primaryMaker === '') {
+                        resultMaker.textContent = 'No primary maker available';
+                    } else {
+                        resultMaker.textContent = result._primaryMaker.name + ' , ' + result._primaryMaker.association;
+                    }
+
+                    //----------------------------------------------
+
+                    //result expand button
+                    const expandButton = document.createElement('button');
+                    expandButton.classList.add('expandButton');
+                    expandButton.textContent = 'View more';
+                    individualResult.appendChild(expandButton);
+                    expandButton.addEventListener('click', () => {
+                        individualResult.appendChild(resultMaker);
+                        individualResult.removeChild(expandButton);
+                        individualResult.appendChild(minimiseButton);
+                    });
+
+                    //----------------------------------------------
+
+                    //result minimise button
+                    const minimiseButton = document.createElement('button');
+                    minimiseButton.classList.add('expandButton');
+                    minimiseButton.textContent = 'View less';
+                    minimiseButton.addEventListener('click', () => {
+                        individualResult.removeChild(resultMaker);
+                        individualResult.appendChild(expandButton);
+                        individualResult.removeChild(minimiseButton);
+                    });
     
                 });
             }
-
-            
         })
         .catch(error => console.log(error));
 }
+
