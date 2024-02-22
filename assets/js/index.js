@@ -23,58 +23,67 @@ async function search(event, input) {
             const resultsContainer = document.querySelector('.results');
             resultsContainer.textContent = '';
 
-            results.forEach(result => {
+            if (results.length === 0) {
+                const noResults = document.createElement('h2');
+                noResults.textContent = 'No results found';
+                resultsContainer.appendChild(noResults);
+            } else {
+                results.forEach(result => {
 
-                //create individual result container
-                const individualResult = document.createElement('div');
-                individualResult.classList.add('individualResult');
-                resultsContainer.appendChild(individualResult);
+                    //create individual result container
+                    const individualResult = document.createElement('div');
+                    individualResult.classList.add('individualResult');
+                    resultsContainer.appendChild(individualResult);
+    
+                    //result title
+                    const resultTitle = document.createElement('h2');
+                    if (result._primaryTitle === '') {
+                        resultTitle.textContent = 'No title available';
+                    } else {
+                        resultTitle.textContent = result._primaryTitle;
+                    }
+                    individualResult.appendChild(resultTitle);
+    
+                    //----------------------------------------------
+    
+                    //result image
+                    const resultImage = document.createElement('img');
+                    
+                    if ((result._images._primary_thumbnail) === undefined) {
+                        resultImage.src = 'https://via.placeholder.com/80';
+                    } else {
+                        resultImage.src = result._images._primary_thumbnail;
+                    }
+                    individualResult.appendChild(resultImage);
+    
+                    //----------------------------------------------
+    
+                    //result description
+                    const resultDate = document.createElement('h3');
+                    if (result._primaryDate === '') {
+                        resultDate.textContent = 'No date available';
+                    } else {
+                        resultDate.textContent = result._primaryDate;
+                    }
+                    individualResult.appendChild(resultDate);
+    
+                    //----------------------------------------------
+    
+                    //result place
+                    const resultPlace = document.createElement('h3');
+                    if (result._primaryPlace === '') {
+                        resultPlace.textContent = 'No place available';
+                    } else {
+                        resultPlace.textContent = result._primaryPlace;
+                    }
+                    individualResult.appendChild(resultPlace);
+    
+                    //----------------------------------------------
+    
+                });
+            }
 
-                //result title
-                const resultTitle = document.createElement('h2');
-                if (result._primaryTitle === '') {
-                    resultTitle.textContent = 'No title available';
-                } else {
-                    resultTitle.textContent = result._primaryTitle;
-                }
-                individualResult.appendChild(resultTitle);
-
-                //----------------------------------------------
-
-                //result image
-                const resultImage = document.createElement('img');
-                
-                if ((result._images._primary_thumbnail) === undefined) {
-                    resultImage.src = 'https://via.placeholder.com/80';
-                } else {
-                    resultImage.src = result._images._primary_thumbnail;
-                }
-                individualResult.appendChild(resultImage);
-
-                //----------------------------------------------
-
-                //result description
-                const resultDate = document.createElement('h3');
-                if (result._primaryDate === '') {
-                    resultDate.textContent = 'No date available';
-                } else {
-                    resultDate.textContent = result._primaryDate;
-                }
-                individualResult.appendChild(resultDate);
-
-                //----------------------------------------------
-
-                //result place
-                const resultPlace = document.createElement('h3');
-                if (result._primaryPlace === '') {
-                    resultPlace.textContent = 'No place available';
-                } else {
-                    resultPlace.textContent = result._primaryPlace;
-                }
-                individualResult.appendChild(resultPlace);
-
-                //----------------------------------------------
-            });
+            
         })
         .catch(error => console.log(error));
 }
