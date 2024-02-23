@@ -36,6 +36,8 @@ async function search(event, input) {
                     const individualResult = document.createElement('div');
                     individualResult.classList.add('individualResult');
                     resultsContainer.appendChild(individualResult);
+
+                    //----------------------------------------------
     
                     //result title
                     const resultTitle = document.createElement('h2');
@@ -51,7 +53,7 @@ async function search(event, input) {
 
                     resultImage.src = result._images._primary_thumbnail || 'https://via.placeholder.com/80';
                     individualResult.appendChild(resultImage);
-                    resultImage.alt = result.physicalDescription || 'No alt text available, see below for details';
+                    resultImage.alt = result.physicalDescription || 'No alt text available, see below for description details';
 
                     const instruction = document.createElement('p');
                     instruction.textContent = 'Click image to expand';
@@ -104,9 +106,6 @@ async function search(event, input) {
                     
                     const description = document.createElement('p');
                     description.textContent = result.summaryDescription || 'No description available';
-
-                    
-                    
 
                     //----------------------------------------------
 
