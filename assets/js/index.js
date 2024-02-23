@@ -6,7 +6,12 @@ window.addEventListener('load', () => {
         event.preventDefault();
         search(event, searchInput.value);
     });
-});
+
+    //Need to ask whether I should bite the bullet and use the submit event instead of keyup, alognside the actual API Search as you type. Just annoying because of the three character minimum.
+})
+
+//need to add clear option
+
 
 async function search(event, input) {
     event.preventDefault();
@@ -40,12 +45,20 @@ async function search(event, input) {
     
                     //result image
                     const resultImage = document.createElement('img');
+                    let big = false;
 
                     resultImage.src = result._images._primary_thumbnail || 'https://via.placeholder.com/80';
                     individualResult.appendChild(resultImage);
 
                     resultImage.addEventListener('click', () => {
-                        resultImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId +'/full/full/0/default.jpg'
+                        if (big) {
+                            resultImage.src = result._images._primary_thumbnail || 'https://via.placeholder.com/80';
+                            big = false;
+                        } else {
+                            resultImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId +'/full/full/0/default.jpg' || 'https://via.placeholder.com/150';
+                            big = true;
+                        }
+                        
                     });
     
                     //----------------------------------------------
