@@ -43,6 +43,10 @@ async function search(event, input) {
 
                     resultImage.src = result._images._primary_thumbnail || 'https://via.placeholder.com/80';
                     individualResult.appendChild(resultImage);
+
+                    resultImage.addEventListener('click', () => {
+                        resultImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId +'/full/full/0/default.jpg'
+                    });
     
                     //----------------------------------------------
     
