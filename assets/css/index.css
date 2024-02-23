@@ -70,3 +70,25 @@ img {
     max-width: 50%;
     height: auto;
 }
+
+.expandButton {
+    background-color: #f9f9f9;
+    border: solid 0.1rem #3d3d3d;
+    color: #3d3d3d;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 0.4rem;
+    cursor: pointer;
+    border-radius: 0.4rem;
+}
+
+.expandButton:hover {
+    background-color: #3d3d3d;
+    color: #f9f9f9;
+}
+
+p {
+    margin: 0.5rem;
+}
