@@ -2,11 +2,6 @@ window.addEventListener('load', () => {
     const searchForm = document.querySelector('.search form');
     const searchInput = document.querySelector('#searchBar');
 
-    // searchForm.addEventListener('submit', (event) => {
-    //     event.preventDefault();
-    //     search(event, searchInput.value);
-    // });
-
     searchForm.addEventListener('keyup', (event) => {
         event.preventDefault();
         search(event, searchInput.value);
@@ -15,7 +10,7 @@ window.addEventListener('load', () => {
 
 async function search(event, input) {
     event.preventDefault();
-    const URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input;
+    const URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input + "&data_profile=full"; //data profile full means entire record is returned, more details
     await fetch(URL)
         .then(response => response.json())
         .then(data => {
@@ -37,57 +32,51 @@ async function search(event, input) {
     
                     //result title
                     const resultTitle = document.createElement('h2');
-                    if (result._primaryTitle === '') {
-                        resultTitle.textContent = 'No title available';
-                    } else {
-                        resultTitle.textContent = result._primaryTitle;
-                    }
+
+                    resultTitle.textContent = result._primaryTitle || 'No title available';
                     individualResult.appendChild(resultTitle);
     
                     //----------------------------------------------
     
                     //result image
                     const resultImage = document.createElement('img');
-                    
-                    if ((result._images._primary_thumbnail) === undefined) {
-                        resultImage.src = 'https://via.placeholder.com/80';
-                    } else {
-                        resultImage.src = result._images._primary_thumbnail;
-                    }
+
+                    resultImage.src = result._images._primary_thumbnail || 'https://via.placeholder.com/80';
                     individualResult.appendChild(resultImage);
     
                     //----------------------------------------------
     
-                    //result description
+                    //result Date
                     const resultDate = document.createElement('h3');
-                    if (result._primaryDate === '') {
-                        resultDate.textContent = 'No date available';
-                    } else {
-                        resultDate.textContent = result._primaryDate;
-                    }
+
+                    resultDate.textContent = result._primaryDate || 'No date available';
                     individualResult.appendChild(resultDate);
     
                     //----------------------------------------------
     
                     //result place
+
                     const resultPlace = document.createElement('h3');
-                    if (result._primaryPlace === '') {
-                        resultPlace.textContent = 'No place available';
-                    } else {
-                        resultPlace.textContent = result._primaryPlace;
-                    }
+
+                    resultPlace.textContent = result._primaryPlace || 'No place available';
                     individualResult.appendChild(resultPlace);
     
                     //----------------------------------------------
 
                     //result description
 
+                    const makerTitle = document.createElement('h3');
+                    makerTitle.textContent = 'Created By';
+
                     const resultMaker = document.createElement('p');
-                    if (result._primaryMaker === '') {
-                        resultMaker.textContent = 'No primary maker available';
-                    } else {
-                        resultMaker.textContent = result._primaryMaker.name + ' , ' + result._primaryMaker.association;
-                    }
+                    resultMaker.textContent = result._primaryMaker.name + ' , ' + result._primaryMaker.association || 'No maker available';
+
+                    const descTitle = document.createElement('h3');
+                    descTitle.textContent = 'Description';
+                    
+                    const description = document.createElement('p');
+                    description.textContent = result.summaryDescription || 'No description available';
+                    
 
                     //----------------------------------------------
 
@@ -97,7 +86,10 @@ async function search(event, input) {
                     expandButton.textContent = 'View more';
                     individualResult.appendChild(expandButton);
                     expandButton.addEventListener('click', () => {
+                        individualResult.appendChild(makerTitle);
                         individualResult.appendChild(resultMaker);
+                        individualResult.appendChild(descTitle);
+                        individualResult.appendChild(description);
                         individualResult.removeChild(expandButton);
                         individualResult.appendChild(minimiseButton);
                     });
@@ -109,7 +101,10 @@ async function search(event, input) {
                     minimiseButton.classList.add('expandButton');
                     minimiseButton.textContent = 'View less';
                     minimiseButton.addEventListener('click', () => {
+                        individualResult.removeChild(makerTitle);
                         individualResult.removeChild(resultMaker);
+                        individualResult.removeChild(description);
+                        individualResult.removeChild(descTitle);
                         individualResult.appendChild(expandButton);
                         individualResult.removeChild(minimiseButton);
                     });
