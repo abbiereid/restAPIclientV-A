@@ -159,3 +159,10 @@ function filter() {
     }
 }
 
+function filtering() {
+    const englandCheckbox = document.querySelector('#England');
+    const franceCheckbox = document.querySelector('#France');
+    const germanyCheckbox = document.querySelector('#Germany');
+
+    return englandCheckbox, franceCheckbox, germanyCheckbox;
+}
