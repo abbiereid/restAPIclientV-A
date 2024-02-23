@@ -7,6 +7,12 @@ window.addEventListener('load', () => {
         search(event, searchInput.value);
     });
 
+    const filterButton = document.querySelector('#filterButton');
+    filterButton.addEventListener('click', () => {
+        filter();
+    });
+        
+
     //Need to ask whether I should bite the bullet and use the submit event instead of keyup, alognside the actual API Search as you type. Just annoying because of the three character minimum.
 })
 
@@ -142,5 +148,14 @@ async function search(event, input) {
             }
         })
         .catch(error => console.log(error));
+}
+
+function filter() {
+    const filterBox = document.querySelector('.filterBox');
+    if (filterBox.style.display === 'block') {
+        filterBox.style.display = 'none';
+    } else {
+        filterBox.style.display = 'block';
+    }
 }
 

@@ -21,15 +21,18 @@
             <input id="searchBar" type="text" name="search" placeholder="Search..">
             <!--<button id="searchButton" type="submit">Search</button>-->
         </form>
-        <div class="dropdown">
-            <button id="filterButton" type="button">Filter</button>
-            <div class="dropdown-content">
-                <a id="placeFilter">Place</a>
-                <!--Maybe add an input so the user can enter what they want to filter for-->
-                <!--Need to research other filter options-->
+
+        <button id="filterButton" type="button">Filter</button>
+        
+        <div class="filterBox">
+            <h2>Filter</h2>
+            <div class = "filterOptions" id="place">
+                <h3>Place:</h3>
+                <input type="radio" id="placeOption" name="England" value="England"> England<br>
+                <input type="radio" id="placeOption" name="France" value="France"> France<br>
+                <input type="radio" id="placeOption" name="Germany" value="Germany"> Germany<br>
             </div>
         </div>
-    </div>
     
 
     <div class="results"></div>
