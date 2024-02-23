@@ -53,17 +53,24 @@ async function search(event, input) {
                     individualResult.appendChild(resultImage);
                     resultImage.alt = result.physicalDescription || 'No alt text available, see below for details';
 
-                    resultImage.addEventListener('click', () => {
-                        if (big) {
-                            resultImage.src = result._images._primary_thumbnail || 'https://via.placeholder.com/80';
-                            resultImage.classList.remove('bigImage');
-                            big = false;
-                        } else {
-                            resultImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId +'/full/full/0/default.jpg' || 'https://via.placeholder.com/180';
-                            resultImage.classList.add('bigImage');
-                            big = true;
-                        }
-                    });
+                    const instruction = document.createElement('p');
+                    instruction.textContent = 'Click image to expand';
+                    individualResult.appendChild(instruction);
+
+
+                    if(resultImage != undefined) {
+                        resultImage.addEventListener('click', () => {
+                            if (big) {
+                                resultImage.src = result._images._primary_thumbnail;
+                                resultImage.classList.remove('bigImage');
+                                big = false;
+                            } else {
+                                resultImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId +'/full/full/0/default.jpg';
+                                resultImage.classList.add('bigImage');
+                                big = true;
+                            }
+                        });
+                    }
     
                     //----------------------------------------------
     
