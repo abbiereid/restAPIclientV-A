@@ -19,6 +19,8 @@ async function search(event, input) {
     await fetch(URL)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
+
             const results = data.records;
             const resultsContainer = document.querySelector('.results');
             resultsContainer.textContent = '';
@@ -49,6 +51,7 @@ async function search(event, input) {
 
                     resultImage.src = result._images._primary_thumbnail || 'https://via.placeholder.com/80';
                     individualResult.appendChild(resultImage);
+                    resultImage.alt = result.physicalDescription || 'No alt text available, see below for details';
 
                     resultImage.addEventListener('click', () => {
                         if (big) {
@@ -81,7 +84,7 @@ async function search(event, input) {
     
                     //----------------------------------------------
 
-                    //result description
+                    //result description/extra details
 
                     const makerTitle = document.createElement('h3');
                     makerTitle.textContent = 'Created By';
@@ -94,6 +97,8 @@ async function search(event, input) {
                     
                     const description = document.createElement('p');
                     description.textContent = result.summaryDescription || 'No description available';
+
+                    
                     
 
                     //----------------------------------------------
