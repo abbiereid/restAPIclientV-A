@@ -71,11 +71,13 @@ async function search(event, input) {
                             if (big) {
                                 resultImage.src = result._images._primary_thumbnail;
                                 resultImage.classList.remove('bigImage');
+                                instruction.textContent = 'Click image to minimise';
                                 big = false;
                             } else {
                                 resultImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId +'/full/full/0/default.jpg';
                                 resultImage.classList.add('bigImage');
-                                big = true;
+                                instruction.textContent = 'Click image to expand';
+                                big = true
                             }
                         });
                     }
