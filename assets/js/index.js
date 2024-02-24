@@ -26,6 +26,7 @@ window.addEventListener('load', () => {
     filterButton.addEventListener('click', () => {
         filter();
     });
+
         
 })
 
@@ -34,7 +35,31 @@ window.addEventListener('load', () => {
 
 async function search(event, input) {
     event.preventDefault();
-    const URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input + "&data_profile=full"; //data profile full means entire record is returned, more details
+
+    const checks = filtering();
+
+    /*found how I want to do the filtering URLs, so fetch and the rest can stay the same
+    just need to work on looping through filtering and changing the URL accordingly
+    There is a slight issue where sometimes the filter is not EXACT, due to the nature of the API,
+    so thinking that the filtering check does 'narrow' search and defaut URL does broad, will work on that
+    after.
+
+    Also, need to work on allowing multiple filters, or stopping the user from selecting multiple filters*/
+
+    let URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input + "&data_profile=full"; //default URL
+    
+    if (checks[0]) {
+        URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input + "&q_place_name=england&data_profile=full";
+    } else if (checks[1]) {
+        URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input + "&q_place_name=france&data_profile=full";
+    } else if (checks[2]) {
+        URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input + "&q_place_name=germany&data_profile=full";
+    }
+
+    /*different URLs not entirely working, should try narrowing to see if it solves issues. Default still
+    working fine though*/
+
+
     await fetch(URL)
         .then(response => response.json())
         .then(data => {
@@ -200,7 +225,7 @@ async function SAYT(event,input) {
 }
 
 
-//filtering - need to work on, putting it on hold for now
+//filtering - needs work
 function filter() {
     const filterBox = document.querySelector('.filterBox');
     if (filterBox.style.display === 'block') {
@@ -215,5 +240,6 @@ function filtering() {
     const franceCheckbox = document.querySelector('#France');
     const germanyCheckbox = document.querySelector('#Germany');
 
-    return englandCheckbox, franceCheckbox, germanyCheckbox;
+    const checks = [englandCheckbox.checked, franceCheckbox.checked, germanyCheckbox.checked];
+    return checks;
 }
