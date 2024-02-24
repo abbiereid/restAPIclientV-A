@@ -54,32 +54,37 @@ async function search(event, input) {
                     //----------------------------------------------
     
                     //result image
-                    const resultImage = document.createElement('img');
-                    let big = false;
 
-                    resultImage.src = result._images._primary_thumbnail || 'https://via.placeholder.com/80';
-                    individualResult.appendChild(resultImage);
-                    resultImage.alt = result.physicalDescription || 'No alt text available, see below for description details';
+                    if (result._images._primary_thumbnail) {
+                        const resultImage = document.createElement('img');
+                        let big = false;
 
-                    const instruction = document.createElement('p');
-                    instruction.textContent = 'Click image to expand';
-                    individualResult.appendChild(instruction);
+                        resultImage.src = result._images._primary_thumbnail;
+                        individualResult.appendChild(resultImage);
+                        resultImage.alt = result.physicalDescription || 'No alt text available, see below for description details';
 
+                        const instruction = document.createElement('p');
+                        instruction.textContent = 'Click image to expand';
+                        individualResult.appendChild(instruction);
 
-                    if(resultImage != undefined) {
+                        
                         resultImage.addEventListener('click', () => {
                             if (big) {
                                 resultImage.src = result._images._primary_thumbnail;
                                 resultImage.classList.remove('bigImage');
-                                instruction.textContent = 'Click image to minimise';
+                                instruction.textContent = 'Click image to expand';
                                 big = false;
                             } else {
                                 resultImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId +'/full/full/0/default.jpg';
                                 resultImage.classList.add('bigImage');
-                                instruction.textContent = 'Click image to expand';
+                                instruction.textContent = 'Click image to minimise';
                                 big = true
                             }
                         });
+                    } else {
+                        const noImage = document.createElement('p');
+                        noImage.textContent = 'No image available';
+                        individualResult.appendChild(noImage);
                     }
     
                     //----------------------------------------------
