@@ -1,19 +1,32 @@
 window.addEventListener('load', () => {
     const searchForm = document.querySelector('.search form');
     const searchInput = document.querySelector('#searchBar');
+    const searchButton = document.querySelector('#searchButton');
 
-    searchForm.addEventListener('keyup', (event) => {
+    saytCheck = true; //could change back when clear button is pressed. Stops it being called after the user has searched
+
+    searchForm.addEventListener('submit', (event) => {
         event.preventDefault();
+        saytCheck = false;
         search(event, searchInput.value);
     });
+
+
+    if (saytCheck) {
+        searchForm.addEventListener('keyup', (event) => {
+            event.preventDefault();
+            if (searchInput.value.length >= 3) {
+                SAYT(event, searchInput.value);
+            }
+        });
+    }
+    
 
     const filterButton = document.querySelector('#filterButton');
     filterButton.addEventListener('click', () => {
         filter();
     });
         
-
-    //Need to ask whether I should bite the bullet and use the submit event instead of keyup, alognside the actual API Search as you type. Just annoying because of the three character minimum.
 })
 
 //need to add clear option
@@ -25,7 +38,6 @@ async function search(event, input) {
     await fetch(URL)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
 
             const results = data.records;
             const resultsContainer = document.querySelector('.results');
@@ -154,9 +166,41 @@ async function search(event, input) {
                 });
             }
         })
-        .catch(error => console.log(error));
+        .catch(error => alert(error));
 }
 
+async function SAYT(event,input) {
+    event.preventDefault();
+    const URL = 'https://api.vam.ac.uk/v2/sayt/search?q=' + input + "&data_profile=full"; //data profile full means entire record is returned, more details
+    await fetch(URL)
+        .then(response => response.json())
+        .then(data => {
+            
+            const results = data.records;
+            const resultsContainer = document.querySelector('.results');
+            resultsContainer.textContent = '';
+
+            //suggestions heading
+            const suggestions = document.createElement('h2');
+            suggestions.textContent = 'Suggestions';
+            resultsContainer.appendChild(suggestions);
+
+            //----------------------------------------------
+
+            results.forEach(result => {
+                //suggestions title
+                const resultTitle = document.createElement('h3');
+
+                resultTitle.textContent = result.displayName || 'No title available';
+                resultsContainer.appendChild(resultTitle);
+            });
+
+        })
+        .catch(error => alert(error));
+}
+
+
+//filtering - need to work on, putting it on hold for now
 function filter() {
     const filterBox = document.querySelector('.filterBox');
     if (filterBox.style.display === 'block') {
