@@ -36,29 +36,23 @@ window.addEventListener('load', () => {
 async function search(event, input) {
     event.preventDefault();
 
-    const checks = filtering();
+    const englandFilter = document.querySelector('#England');
+    const franceFilter = document.querySelector('#France');
+    const germanyFilter = document.querySelector('#Germany');
 
-    /*found how I want to do the filtering URLs, so fetch and the rest can stay the same
-    just need to work on looping through filtering and changing the URL accordingly
-    There is a slight issue where sometimes the filter is not EXACT, due to the nature of the API,
-    so thinking that the filtering check does 'narrow' search and defaut URL does broad, will work on that
-    after.
+    let URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input;
 
-    Also, need to work on allowing multiple filters, or stopping the user from selecting multiple filters*/
-
-    let URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input + "&data_profile=full"; //default URL
-    
-    if (checks[0]) {
-        URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input + "&q_place_name=england&data_profile=full";
-    } else if (checks[1]) {
-        URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input + "&q_place_name=france&data_profile=full";
-    } else if (checks[2]) {
-        URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input + "&q_place_name=germany&data_profile=full";
+    if (englandFilter.checked) {
+        URL += englandFilter.value;
+    } else if (franceFilter.checked) {
+        URL += franceFilter.value;
+    } else if (germanyFilter.checked) {
+        URL += germanyFilter.value;
     }
 
-    /*different URLs not entirely working, should try narrowing to see if it solves issues. Default still
-    working fine though*/
+    URL += "&data_profile=full"; //data profile full means entire record is returned, more details
 
+    console.log(URL);
 
     await fetch(URL)
         .then(response => response.json())
@@ -228,18 +222,9 @@ async function SAYT(event,input) {
 //filtering - needs work
 function filter() {
     const filterBox = document.querySelector('.filterBox');
-    if (filterBox.style.display === 'block') {
+    if (filterBox.style.display === 'inline-block') {
         filterBox.style.display = 'none';
     } else {
-        filterBox.style.display = 'block';
+        filterBox.style.display = 'inline-block';
     }
-}
-
-function filtering() {
-    const englandCheckbox = document.querySelector('#England');
-    const franceCheckbox = document.querySelector('#France');
-    const germanyCheckbox = document.querySelector('#Germany');
-
-    const checks = [englandCheckbox.checked, franceCheckbox.checked, germanyCheckbox.checked];
-    return checks;
 }
