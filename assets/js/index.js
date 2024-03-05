@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
     const searchInput = document.querySelector('#searchBar');
     const searchButton = document.querySelector('#searchButton');
 
-    saytCheck = true; //could change back when clear button is pressed. Stops it being called after the user has searched
+    saytCheck = true;
 
     searchForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -68,10 +68,16 @@ function search(event, input) {
         URL += germanyFilter.value;
     }
 
+    const orderBy = document.querySelector('#sort').value;
+    if (orderBy != 'relevance') {
+        URL += "&order_by=" + orderBy;
+    }
 
     URL += "&data_profile=full";
 
     URL += "&page_size=" + resultAmount.value;
+
+    console.log(URL);
 
     const resultsContainer = document.querySelector('.results');
     const loading = document.createElement('img');
@@ -216,7 +222,7 @@ function search(event, input) {
 
 async function SAYT(event,input) {
     event.preventDefault();
-    const URL = 'https://api.vam.ac.uk/v2/sayt/search?q=' + input + "&data_profile=full"; //data profile full means entire record is returned, more details
+    const URL = 'https://api.vam.ac.uk/v2/sayt/search?q=' + input + "&data_profile=full";
     await fetch(URL)
         .then(response => response.json())
         .then(data => {
@@ -227,19 +233,21 @@ async function SAYT(event,input) {
 
             //suggestions heading
             const suggestions = document.createElement('h2');
-            suggestions.textContent = 'Suggestions';
-            resultsContainer.appendChild(suggestions);
 
-            //----------------------------------------------
-
-            results.forEach(result => {
-                //suggestions title
-                const resultTitle = document.createElement('h3');
-
-                resultTitle.textContent = result.displayName || 'No title available';
-                resultsContainer.appendChild(resultTitle);
-            });
-
+            if (results.length === 0) {
+                suggestions.textContent = 'No suggestions found';
+                resultsContainer.appendChild(suggestions);
+            } else {
+                suggestions.textContent = 'Suggestions';
+                results.forEach(result => {
+                    //suggestions title
+                    const resultTitle = document.createElement('h3');
+    
+                    resultTitle.textContent = result.displayName || 'No title available';
+                    resultsContainer.appendChild(suggestions);
+                    resultsContainer.appendChild(resultTitle);
+                });
+            }
         })
         .catch(error => alert(error));
 }
