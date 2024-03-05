@@ -68,6 +68,13 @@ img {
     width: 80%;
 }
 
+.close {
+    float: right;
+    font-size: 2rem;
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+}
 
 button {
     background-color: #f9f9f9;

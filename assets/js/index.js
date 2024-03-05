@@ -93,6 +93,8 @@ function search(event, input) {
 
                     if (result._images._primary_thumbnail) {
 
+                        resultImage.style.cursor = 'pointer';
+
                         const instruction = document.createElement('p');
                         instruction.textContent = 'Click image to expand';
                         individualResult.appendChild(instruction);
@@ -105,6 +107,12 @@ function search(event, input) {
                             bigImage.classList.add('bigImage');
                             popup.style.display = 'block';
                             popup.appendChild(bigImage);
+
+                            const close = document.querySelector('.close');
+                            close.addEventListener('click', () => {
+                                popup.style.display = 'none';
+                                popup.removeChild(bigImage);
+                            });
                         });
                     }
     
