@@ -33,7 +33,7 @@ window.addEventListener('load', () => {
 //need to add clear option
 
 
-async function search(event, input) {
+function search(event, input) {
     event.preventDefault();
 
     const englandFilter = document.querySelector('#England');
@@ -52,9 +52,8 @@ async function search(event, input) {
 
     URL += "&data_profile=full"; //data profile full means entire record is returned, more details
 
-    console.log(URL);
 
-    await fetch(URL)
+    fetch(URL)
         .then(response => response.json())
         .then(data => {
 
@@ -86,36 +85,27 @@ async function search(event, input) {
     
                     //result image
 
-                    if (result._images._primary_thumbnail) {
-                        const resultImage = document.createElement('img');
-                        let big = false;
+                    const resultImage = document.createElement('img');
 
-                        resultImage.src = result._images._primary_thumbnail;
-                        individualResult.appendChild(resultImage);
-                        resultImage.alt = result.physicalDescription || 'No alt text available, see below for description details';
+                    resultImage.src = result._images._primary_thumbnail || 'assets/images/noImage.png';
+                    individualResult.appendChild(resultImage);
+                    resultImage.alt = result.physicalDescription || 'No alt text available, see below for description details';
+
+                    if (result._images._primary_thumbnail) {
 
                         const instruction = document.createElement('p');
                         instruction.textContent = 'Click image to expand';
                         individualResult.appendChild(instruction);
 
-                        
+                            
                         resultImage.addEventListener('click', () => {
-                            if (big) {
-                                resultImage.src = result._images._primary_thumbnail;
-                                resultImage.classList.remove('bigImage');
-                                instruction.textContent = 'Click image to expand';
-                                big = false;
-                            } else {
-                                resultImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId +'/full/full/0/default.jpg';
-                                resultImage.classList.add('bigImage');
-                                instruction.textContent = 'Click image to minimise';
-                                big = true
-                            }
+                            const popup = document.querySelector('.popup');
+                            const bigImage = document.createElement('img');
+                            bigImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId +'/full/full/0/default.jpg';
+                            bigImage.classList.add('bigImage');
+                            popup.style.display = 'block';
+                            popup.appendChild(bigImage);
                         });
-                    } else {
-                        const noImage = document.createElement('p');
-                        noImage.textContent = 'No image available';
-                        individualResult.appendChild(noImage);
                     }
     
                     //----------------------------------------------
