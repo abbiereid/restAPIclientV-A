@@ -1,7 +1,7 @@
 body {
     font-family: "Noto Serif", serif;
     text-align: center;
-    background-color: rgb(255, 232, 189);
+    background-color: #ffe8bd;
 }
 
 h1 {
@@ -100,16 +100,6 @@ p {
 }
 
 .filterBox {
-    background-color: #fdf4e8;
-    border-radius: 5rem;
-    border-width: 0.5rem;
-    border-style: solid;
-    border-color: #565555;
-    margin-left: 40rem;
-    margin-right: 40rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    padding: 2rem;
     display: none;
 }
 
@@ -117,3 +107,19 @@ p {
     display: none;
 }
 
+.searchOptions {
+    background-color: #efdfc8;
+    border-radius: 5rem;
+    border-width: 0.5rem;
+    border-style: solid;
+    border-color: #565555;
+    padding: 1rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.sortOptions {
+    padding: 1rem;
+}

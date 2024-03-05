@@ -39,6 +39,7 @@ function search(event, input) {
     const englandFilter = document.querySelector('#England');
     const franceFilter = document.querySelector('#France');
     const germanyFilter = document.querySelector('#Germany');
+    const resultAmount = document.querySelector('.resultAmount');
 
     let URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input;
 
@@ -50,16 +51,25 @@ function search(event, input) {
         URL += germanyFilter.value;
     }
 
+
     URL += "&data_profile=full"; //data profile full means entire record is returned, more details
+
+    URL += "&page_size=" + resultAmount.value;
+
+    const resultsContainer = document.querySelector('.results');
+    const loading = document.createElement('img');
+    loading.src = 'assets/images/loading.gif';
+
+    resultsContainer.appendChild(loading);
 
 
     fetch(URL)
         .then(response => response.json())
         .then(data => {
 
-            const results = data.records;
-            const resultsContainer = document.querySelector('.results');
             resultsContainer.textContent = '';
+
+            const results = data.records;
 
             if (results.length === 0) {
                 const noResults = document.createElement('h2');

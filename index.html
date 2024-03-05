@@ -16,13 +16,30 @@
     <h1>Victoria and Albert Museum</h1>
     <h2>Enjoy browsing the collection!</h2>
 
-    <div class="search">
-        <form>
-            <input id="searchBar" type="text" name="search" placeholder="Search..">
-            <button id="searchButton" type="submit">Search</button>
-        </form>
+    <div class ="search">
+    <form>
+        <input id="searchBar" type="text" name="search" placeholder="Search..">
+        <button id="searchButton" type="submit">Search</button>
+    </form>
+    </div>
 
+
+    <div class="searchOptions">
+
+        <label for="resultAmount">Number of results per page:</label>
+        <input type="number" class="resultAmount" min="1" max="100" value="10">
+
+        <div class="sortOptions">
+            <label for="sort">Sort by:</label>
+            <select id="sort">
+                <option value="relevance">Relevance</option>
+                <option value="date">Date</option>
+            </select>
+        </div>
+
+        <div>
         <button id="filterButton" type="button">Filter</button>
+        </div>
         
         <div class="filterBox">
             <h2>Filter</h2>
@@ -35,6 +52,9 @@
                 </form>
             </div>
         </div>
+
+    </div>
+        
 
     <div class="results"></div>
     <div class="popup">
