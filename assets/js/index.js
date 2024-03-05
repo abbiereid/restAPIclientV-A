@@ -73,6 +73,13 @@ function search(event, input) {
         URL += "&order_by=" + orderBy;
     }
 
+    URL += "&order_sort="+ document.querySelector('#order').value;
+
+    //fix this
+    if (document.querySelector('#imgReq').checked) {
+        URL += "&image=true";
+    }
+
     URL += "&data_profile=full";
 
     URL += "&page_size=" + resultAmount.value;
@@ -238,14 +245,25 @@ async function SAYT(event,input) {
                 suggestions.textContent = 'No suggestions found';
                 resultsContainer.appendChild(suggestions);
             } else {
+
                 suggestions.textContent = 'Suggestions';
+                resultsContainer.appendChild(suggestions);
+                const instructions = document.createElement('p');
+                instructions.textContent = 'Click suggestion to search';
+                resultsContainer.appendChild(instructions);
+
                 results.forEach(result => {
                     //suggestions title
                     const resultTitle = document.createElement('h3');
+                    resultTitle.classList.add('suggestionTitle');
     
                     resultTitle.textContent = result.displayName || 'No title available';
-                    resultsContainer.appendChild(suggestions);
                     resultsContainer.appendChild(resultTitle);
+
+                    resultTitle.addEventListener('click', () => {
+                        search(event, result.displayName);
+                    });
+
                 });
             }
         })

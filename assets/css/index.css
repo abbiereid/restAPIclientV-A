@@ -141,3 +141,7 @@ p {
     margin: 2rem;
     display: none;
 }
+
+.suggestionTitle {
+    cursor: pointer;
+}
