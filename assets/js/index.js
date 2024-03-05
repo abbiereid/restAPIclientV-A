@@ -113,6 +113,7 @@ function search(event, input) {
                                 popup.style.display = 'none';
                                 popup.removeChild(bigImage);
                             });
+
                         });
                     }
     
