@@ -27,10 +27,27 @@ window.addEventListener('load', () => {
         filter();
     });
 
+    const advancedButton = document.querySelector('#advancedButton');
+    advancedButton.addEventListener('click', () => {
+        const options = document.querySelector('.searchOptions');
+        if (options.style.display === 'none') {
+            options.style.display = 'block';
+        } else {
+            options.style.display = 'none';
+        }
+    });
+
+    const clearButton = document.querySelector('#clearButton');
+    clearButton.addEventListener('click', () => {
+        const resultsContainer = document.querySelector('.results');
+        resultsContainer.textContent = '';
+        searchInput.value = '';
+        saytCheck = true;
+    });
         
 })
 
-//need to add clear option
+
 
 
 function search(event, input) {
@@ -52,7 +69,7 @@ function search(event, input) {
     }
 
 
-    URL += "&data_profile=full"; //data profile full means entire record is returned, more details
+    URL += "&data_profile=full";
 
     URL += "&page_size=" + resultAmount.value;
 

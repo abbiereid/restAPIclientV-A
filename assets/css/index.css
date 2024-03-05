@@ -22,16 +22,19 @@ h2 {
     font-size: large;
     border-style: solid;
     border-color: #3d3d3d;
-    border-width: 0.3rem;
-    margin-top: 2rem;
+    border-width: 0.2rem;
+    margin-top: 1rem;
     margin-bottom: 2rem;
     border-radius: 0.5rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    width: 60%;
 }
 
 .individualResult {
     background-color: #efdfc8;
     border-radius: 5rem;
-    border-width: 0.5rem;
+    border-width: 0.2rem;
     border-style: solid;
     border-color: #565555;
     padding: 1rem;
@@ -88,6 +91,7 @@ button {
     margin: 0.4rem;
     cursor: pointer;
     border-radius: 0.4rem;
+    padding: 0.5rem 1rem;
 }
 
 button:hover {
@@ -107,19 +111,33 @@ p {
     display: none;
 }
 
-.searchOptions {
+.searchBox {
     background-color: #efdfc8;
-    border-radius: 5rem;
-    border-width: 0.5rem;
+    border-radius: 1rem;
+    border-width: 0.2rem;
     border-style: solid;
     border-color: #565555;
     padding: 1rem;
-    margin-left: 15rem;
-    margin-right: 15rem;
+    margin-left: 20rem;
+    margin-right: 20rem;
     margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin-top: 3rem;
 }
 
 .sortOptions {
     padding: 1rem;
+}
+
+.orderOptions {
+    padding-bottom: 1rem;
+}
+
+.searchOptions {
+    border-style: solid;
+    border-color: #3d3d3d;
+    border-width: 0.1rem;
+    padding: 2rem;
+    border-radius: 2rem;
+    margin: 2rem;
+    display: none;
 }
