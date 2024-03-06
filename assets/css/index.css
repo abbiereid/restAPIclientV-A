@@ -55,6 +55,12 @@ h2 {
 img {
     border-radius: 0.4rem;
     margin: 0.4rem;
+    margin-top: 1rem;
+}
+
+.noImage {
+    height: 15%;
+    width: 15%;
 }
 
 .bigImage {

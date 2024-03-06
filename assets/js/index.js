@@ -125,11 +125,25 @@ function search(event, input) {
     
                     //result image
 
-                    const resultImage = document.createElement('img');
+                    //making an image div because of loading times, images move.
+                    const imageDiv = document.createElement('div');
+                    individualResult.appendChild(imageDiv);
 
-                    resultImage.src = result._images._primary_thumbnail || 'assets/images/noImage.png';
-                    individualResult.appendChild(resultImage);
-                    resultImage.alt = result.physicalDescription || 'No alt text available, see below for description details';
+                    const resultImage = new Image();
+
+                    resultImage.src = result._images._primary_thumbnail;
+
+                    resultImage.onload = () => {
+                        imageDiv.appendChild(resultImage);
+                        resultImage.alt = result.physicalDescription || 'No alt text avaliable, see below for a description of the record';
+                    }
+
+                    resultImage.onerror = () => {
+                        resultImage.src = 'assets/images/noImage.png';
+                        resultImage.classList.add('noImage');
+                        imageDiv.appendChild(resultImage);
+                        resultImage.alt = 'No image available';
+                    }
 
                     if (result._images._primary_thumbnail) {
 
