@@ -149,3 +149,59 @@ p {
 .suggestionTitle:hover {
     color: #3d3d3d;
 }
+
+@media only screen and (max-width: 600px) {
+
+    #searchBar {
+        width: 90%;
+        margin-bottom: 0.1rem;
+    }
+
+    .individualResult {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .popup {
+        padding: 1rem;
+        height: 90%;
+        width: 90%;
+    }
+
+    .searchBox {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    #searchButton {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    
+        #searchBar {
+            width: 80%;
+            margin-bottom: 0.1rem;
+        }
+    
+        .individualResult {
+            margin-left: 5rem;
+            margin-right: 5rem;
+        }
+    
+        .popup {
+            padding: 1.5rem;
+            height: 85%;
+            width: 85%;
+        }
+    
+        .searchBox {
+            margin-left: 10rem;
+            margin-right: 10rem;
+        }
+
+        #searchButton {
+            width: 80%;
+        }
+}
