@@ -1,0 +1,138 @@
+:root {
+    --primary-colour: #3D405B;
+    --secondary-colour: #E07A5F;
+    --tertiary-colour: #c5ddf3;
+    --background-colour: #F4F1DE;
+    --accent-colour: #81B29A;
+}
+
+.hidden {
+    display: none !important; 
+}
+
+.clickable {
+    cursor: pointer !important;
+}
+
+body {
+    background-color: var(--background-colour);
+    font-family: "Noto Serif", serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3em;
+    margin-top: 3rem;
+    margin-bottom: 0;
+    color: var(--primary-colour);
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    color: var(--secondary-colour);
+}
+
+#searchBox {
+    align-items: center;
+    flex-direction: column;
+    border: var(--primary-colour) 0.2rem solid;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-bottom: 2rem;
+}
+
+#searchBar {
+    font-size: large;
+    border-radius: 48px;
+    width: 60%;
+    padding: 0.3rem;
+    border: 0.2rem solid var(--accent-colour);
+    margin-top: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+#searchBar:focus {
+    outline: none;
+    border: #3D405B 0.2rem solid;
+}
+
+#searchOptions {
+    margin: 1rem;
+    border-radius: 0.5rem;
+}
+
+#searchOptions div {
+    margin: 1rem;
+}
+
+button {
+    background-color: var(--accent-colour);
+    border: solid 0.1rem var(--accent-colour);
+    color: var(--primary-colour);
+    text-align: center;
+    font-size: 1.2rem;
+    border-radius: 0.4rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background-color: var(--secondary-colour);
+    color: var(--primary-colour);
+    border: solid 0.1rem var(--secondary-colour);
+}
+
+#searchButton {
+    background-color: var(--secondary-colour);
+    width: 50%;
+    margin-bottom: 2rem;
+}
+
+#searchButton:hover {
+    background-color: var(--accent-colour);
+}
+
+.suggestionTitle:hover {
+    color: var(--secondary-colour);
+    transition: all 0.2s;
+}
+
+.resultsContainer {
+    display: flex;
+}
+
+.individualResult {
+    background-color: var(--tertiary-colour);
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: #3D405B 0.2rem solid;
+    display: flex;
+    align-items: flex-start;
+}
+
+.imageDiv {
+    flex-shrink: 0;
+}
+
+.contentDiv {
+    flex-grow: 1;
+    padding: 2rem;
+}
+
+.imageDiv img {
+    max-width: 200px;
+}
+
+
+
+
+
+

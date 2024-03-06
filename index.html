@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>V&A Musuem</title>
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/newindex.css">
     <script src="assets/js/index.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,24 +13,24 @@
 
     <main>
 
-    <h1>Victoria and Albert Museum</h1>
-    <h2>Enjoy browsing the collection!</h2>
+    <div class="header">
+        <h1>Victoria and Albert Museum</h1>
+        <h2>Enjoy browsing the collection!</h2>
+    </div>
 
-
-
-    <div class="searchBox">
+    <div id="searchBox">
 
         <div class ="search">
             <form>
                 <input id="searchBar" type="text" name="search" placeholder="Search..">
-                <button id="searchButton" type="submit">Search</button>
+                <button class="clickable" id="searchButton" type="submit">Search</button>
             </form>
         </div>
 
-        <button id="clearButton" type="button">Clear</button>
-        <button id="advancedButton" type="button">Advanced Search</button>
+        <button class="clickable" id="clearButton" type="button">Clear</button>
+        <button class="clickable" id="advancedButton" type="button">Advanced Search</button>
 
-        <fieldset class="searchOptions">
+        <fieldset class="hidden" id="searchOptions">
         <legend><strong>Options</strong></legend>
 
         <label for="resultAmount">Number of results per page:</label>
@@ -57,10 +57,10 @@
         </div>
 
         <div>
-        <button id="filterButton" type="button">Filter</button>
+        <button class="clickable" id="filterButton" type="button">Filter</button>
         </div>
         
-        <div class="filterBox">
+        <div class="hidden" id="filterBox">
             <h2>Filter</h2>
 
             <fieldset class = "filterOptions" id="place">
@@ -75,7 +75,7 @@
             <fieldset class = "filterOptions" id="Image">
                 <legend><strong>Image required</strong></legend>
                 <form id="placeForm">
-                <input type="checkbox" id="imgReq">Yes<br>
+                <input type="checkbox" id="imgReq">No<br>
                 </form>
             </fieldset>
 
@@ -86,8 +86,8 @@
         
 
     <div class="results"></div>
-    <div class="popup">
-        <img src="assets/images/closeBtn.png" class="close">
+    <div class="hidden" id="popup">
+        <img src="assets/images/closeBtn.png" class="clickable" id="close">
     </div>
 
     </main>

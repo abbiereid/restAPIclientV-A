@@ -24,16 +24,21 @@ window.addEventListener('load', () => {
 
     const filterButton = document.querySelector('#filterButton');
     filterButton.addEventListener('click', () => {
-        filter();
+        const filterBox = document.querySelector('#filterBox');
+        if (filterBox.classList.contains('hidden')) {
+            filterBox.classList.remove('hidden');
+        } else {
+            filterBox.classList.add('hidden');
+        }
     });
 
     const advancedButton = document.querySelector('#advancedButton');
     advancedButton.addEventListener('click', () => {
-        const options = document.querySelector('.searchOptions');
-        if (options.style.display === 'none') {
-            options.style.display = 'block';
+        const options = document.querySelector('#searchOptions');
+        if (options.classList.contains('hidden')) {
+            options.classList.remove('hidden');
         } else {
-            options.style.display = 'none';
+            options.classList.add('hidden');
         }
     });
 
@@ -77,6 +82,8 @@ function search(event, input) {
 
     //fix this
     if (document.querySelector('#imgReq').checked) {
+        URL += "&image=false";
+    } else {
         URL += "&image=true";
     }
 
@@ -114,24 +121,31 @@ function search(event, input) {
                     resultsContainer.appendChild(individualResult);
 
                     //----------------------------------------------
+
+                    const imageDiv = document.createElement('div');
+                    imageDiv.classList.add('imageDiv');
+                    individualResult.appendChild(imageDiv);
+
+                    //making an image div because of loading times, images move.
+                    const contentDiv = document.createElement('div');
+                    contentDiv.classList.add('contentDiv');
+                    individualResult.appendChild(contentDiv);
+
+                    //----------------------------------------------
     
                     //result title
                     const resultTitle = document.createElement('h2');
 
                     resultTitle.textContent = result._primaryTitle || 'No title available';
-                    individualResult.appendChild(resultTitle);
+                    contentDiv.appendChild(resultTitle);
     
                     //----------------------------------------------
     
                     //result image
 
-                    //making an image div because of loading times, images move.
-                    const imageDiv = document.createElement('div');
-                    individualResult.appendChild(imageDiv);
-
                     const resultImage = new Image();
 
-                    resultImage.src = result._images._primary_thumbnail;
+                    resultImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId + '/full/full/0/default.jpg';
 
                     resultImage.onload = () => {
                         imageDiv.appendChild(resultImage);
@@ -151,20 +165,20 @@ function search(event, input) {
 
                         const instruction = document.createElement('p');
                         instruction.textContent = 'Click image to expand';
-                        individualResult.appendChild(instruction);
+                        imageDiv.appendChild(instruction);
 
                             
                         resultImage.addEventListener('click', () => {
                             const popup = document.querySelector('.popup');
                             const bigImage = document.createElement('img');
-                            bigImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId +'/full/full/0/default.jpg';
+                            bigImage.src = resultImage.src;
                             bigImage.classList.add('bigImage');
-                            popup.style.display = 'block';
+                            popup.classList.remove('hidden');
                             popup.appendChild(bigImage);
 
                             const close = document.querySelector('.close');
                             close.addEventListener('click', () => {
-                                popup.style.display = 'none';
+                                popup.classList.add('hidden');
                                 popup.removeChild(bigImage);
                             });
 
@@ -177,7 +191,7 @@ function search(event, input) {
                     const resultDate = document.createElement('h3');
 
                     resultDate.textContent = result._primaryDate || 'No date available';
-                    individualResult.appendChild(resultDate);
+                    contentDiv.appendChild(resultDate);
     
                     //----------------------------------------------
     
@@ -186,7 +200,7 @@ function search(event, input) {
                     const resultPlace = document.createElement('h3');
 
                     resultPlace.textContent = result._primaryPlace || 'No place available';
-                    individualResult.appendChild(resultPlace);
+                    contentDiv.appendChild(resultPlace);
     
                     //----------------------------------------------
 
@@ -210,14 +224,14 @@ function search(event, input) {
                     const expandButton = document.createElement('button');
                     expandButton.classList.add('expandButton');
                     expandButton.textContent = 'View more';
-                    individualResult.appendChild(expandButton);
+                    contentDiv.appendChild(expandButton);
                     expandButton.addEventListener('click', () => {
-                        individualResult.appendChild(makerTitle);
-                        individualResult.appendChild(resultMaker);
-                        individualResult.appendChild(descTitle);
-                        individualResult.appendChild(description);
-                        individualResult.removeChild(expandButton);
-                        individualResult.appendChild(minimiseButton);
+                        contentDiv.appendChild(makerTitle);
+                        contentDiv.appendChild(resultMaker);
+                        contentDiv.appendChild(descTitle);
+                        contentDiv.appendChild(description);
+                        contentDiv.removeChild(expandButton);
+                        contentDiv.appendChild(minimiseButton);
                     });
 
                     //----------------------------------------------
@@ -227,12 +241,12 @@ function search(event, input) {
                     minimiseButton.classList.add('expandButton');
                     minimiseButton.textContent = 'View less';
                     minimiseButton.addEventListener('click', () => {
-                        individualResult.removeChild(makerTitle);
-                        individualResult.removeChild(resultMaker);
-                        individualResult.removeChild(description);
-                        individualResult.removeChild(descTitle);
-                        individualResult.appendChild(expandButton);
-                        individualResult.removeChild(minimiseButton);
+                        contentDiv.removeChild(makerTitle);
+                        contentDiv.removeChild(resultMaker);
+                        contentDiv.removeChild(description);
+                        contentDiv.removeChild(descTitle);
+                        contentDiv.appendChild(expandButton);
+                        contentDiv.removeChild(minimiseButton);
                     });
     
                 });
@@ -270,6 +284,7 @@ async function SAYT(event,input) {
                     //suggestions title
                     const resultTitle = document.createElement('h3');
                     resultTitle.classList.add('suggestionTitle');
+                    resultTitle.classList.add('clickable');
     
                     resultTitle.textContent = result.displayName || 'No title available';
                     resultsContainer.appendChild(resultTitle);
@@ -284,13 +299,3 @@ async function SAYT(event,input) {
         .catch(error => alert(error));
 }
 
-
-//filtering - needs work
-function filter() {
-    const filterBox = document.querySelector('.filterBox');
-    if (filterBox.style.display === 'inline-block') {
-        filterBox.style.display = 'none';
-    } else {
-        filterBox.style.display = 'inline-block';
-    }
-}
