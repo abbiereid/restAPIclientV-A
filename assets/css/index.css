@@ -1,27 +1,35 @@
+:root {
+    --background-colour: #ffe8bd;
+    --secondary-colour: #efdfc8;
+    --tertiary-colour: #f9f9f9;
+    --accent-colour: #3d3d3d;
+    --secondary-accent-colour: #565555;
+}
+
 body {
     font-family: "Noto Serif", serif;
     text-align: center;
-    background-color: #ffe8bd;
+    background-color: var(--background-colour);
 }
 
 h1 {
     font-size: 3em;
     margin-top: 3rem;
     margin-bottom: 0;
-    color: #3d3d3d;
+    color: var(--accent-colour);
 }
 
 h2 {
     font-size: 1.5em;
     margin-top: 1rem;
     margin-bottom: 0;
-    color: #565555;
+    color: var(--secondary-accent-colour);
 }
 
 #searchBar {
     font-size: large;
     border-style: solid;
-    border-color: #3d3d3d;
+    border-color: var(--accent-colour);
     border-width: 0.2rem;
     margin-top: 1rem;
     margin-bottom: 2rem;
@@ -32,11 +40,11 @@ h2 {
 }
 
 .individualResult {
-    background-color: #efdfc8;
+    background-color: var(--secondary-colour);
     border-radius: 5rem;
     border-width: 0.2rem;
     border-style: solid;
-    border-color: #565555;
+    border-color: var(--secondary-accent-colour);
     padding: 1rem;
     margin-left: 15rem;
     margin-right: 15rem;
@@ -55,7 +63,7 @@ img {
 }
 
 .popup {
-    background-color: #efdfc8;
+    background-color: var(--secondary-colour);
     display: none;
     overflow: auto;
     position: fixed;
@@ -64,8 +72,8 @@ img {
     transform: translate(-50%, -50%);
     padding: 2rem;
     border-radius: 1.5rem;
-    border-color: #3d3d3d;
-    box-shadow: 0 0 10px 0 #3d3d3d;
+    border-color: var(--accent-colour);
+    box-shadow: 0 0 10px 0 var(--accent-colour);
     z-index: 1000;
     height: 80%;
     width: 80%;
@@ -81,9 +89,9 @@ img {
 
 
 button {
-    background-color: #f9f9f9;
-    border: solid 0.1rem #3d3d3d;
-    color: #3d3d3d;
+    background-color: var(--tertiary-colour);
+    border: solid 0.1rem var(--accent-colour);
+    color: var(--accent-colour);
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -95,8 +103,8 @@ button {
 }
 
 button:hover {
-    background-color: #3d3d3d;
-    color: #f9f9f9;
+    background-color: var(--accent-colour);
+    color: var(--tertiary-colour);
 }
 
 p {
@@ -112,11 +120,11 @@ p {
 }
 
 .searchBox {
-    background-color: #efdfc8;
+    background-color: var(--secondary-colour);
     border-radius: 1rem;
     border-width: 0.2rem;
     border-style: solid;
-    border-color: #565555;
+    border-color: var(--secondary-accent-colour);
     padding: 1rem;
     margin-left: 20rem;
     margin-right: 20rem;
@@ -134,7 +142,7 @@ p {
 
 .searchOptions {
     border-style: solid;
-    border-color: #3d3d3d;
+    border-color: var(--accent-colour);
     border-width: 0.1rem;
     padding: 2rem;
     border-radius: 2rem;
@@ -147,7 +155,7 @@ p {
 }
 
 .suggestionTitle:hover {
-    color: #3d3d3d;
+    color: var(--accent-colour);
 }
 
 @media only screen and (max-width: 600px) {
