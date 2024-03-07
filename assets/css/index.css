@@ -1,9 +1,9 @@
 :root {
-    --primary-colour: #3D405B;
-    --secondary-colour: #E07A5F;
-    --tertiary-colour: #c5ddf3;
-    --background-colour: #F4F1DE;
-    --accent-colour: #81B29A;
+    --primary-colour: #000000;
+    --secondary-colour: #ff0000;
+    --tertiary-colour: #c9e2fa;
+    --background-colour: #cff1f3;
+    --accent-colour: #82ac98;
 }
 
 .hidden {
