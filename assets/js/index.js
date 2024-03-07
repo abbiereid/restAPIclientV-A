@@ -226,10 +226,10 @@ function search(event, input) {
         .catch(error => alert(error));
 }
 
-async function SAYT(event,input) {
+function SAYT(event,input) {
     event.preventDefault();
     const URL = 'https://api.vam.ac.uk/v2/sayt/search?q=' + input + "&data_profile=full";
-    await fetch(URL)
+    fetch(URL)
         .then(response => response.json())
         .then(data => {
             

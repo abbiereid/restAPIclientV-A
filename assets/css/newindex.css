@@ -114,17 +114,8 @@ button:hover {
     flex-direction: column;
 }
 
-.imageDiv {
-    flex-shrink: 0;
-}
-
-.contentDiv {
-    flex-grow: 1;
-    padding: 2rem;
-}
-
 .imageDiv img {
-    max-width: 200px;
+    max-width: 150px;
 }
 
 
