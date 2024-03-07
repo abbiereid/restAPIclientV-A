@@ -127,9 +127,14 @@ button:hover {
     border-radius: 0.5rem;
 }
 
+.noImage {
+    max-width: 40%;
+}
+
 .expanded {
     height: 80%;
     width: 80%;
+    transition: all 0.5s;
 }
 
 
