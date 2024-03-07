@@ -89,9 +89,7 @@ function search(event, input) {
 
     close.addEventListener('click', () => {
         popup.classList.toggle('hidden');
-        if (popup.children[1]) {
-            popup.removeChild(popup.children[1]);
-        }
+        popup.children[1].remove();
     });
 
     //----------------------------------------------
@@ -165,6 +163,8 @@ function search(event, input) {
                         resultImage.addEventListener('click', () => {
                             const bigImage = new Image();
                             bigImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId + '/full/full/0/default.jpg';
+                            bigImage.classList.add('bigImage');
+
 
                             bigImage.onload = () => {
                                 popup.classList.toggle('hidden');
@@ -173,8 +173,10 @@ function search(event, input) {
 
                             bigImage.onerror = () => {
                                 popup.classList.toggle('hidden');
-                                bigImage.src = 'assets/images/noImage.png';
-                                popup.appendChild(bigImage);
+                                const error = document.createElement('h2');
+                                popup.appendChild(error);
+                                error.classList.add('textError');
+                                error.textContent = 'There was a problem expanding this image, please try again later';
                             }
                         });
                     }

@@ -149,6 +149,7 @@ button:hover {
     border: var(--primary-colour) 0.2rem solid;
     border-radius: 0.5rem;
     padding: 2rem;
+    transition: all 0.5s;
 }
 
 #close {
@@ -158,8 +159,14 @@ button:hover {
 }
 
 .bigImage {
-    max-width: 95%;
-    max-height: 95%;
+    max-width: 60vw;
+    max-height: 80vh;
+}
+
+.textError {
+    color: red;
+    font-size: 1.5rem;
+    margin-top: 1rem;
 }
 
 @media (max-width: 575.98px) {
