@@ -102,10 +102,6 @@ button:hover {
     transition: all 0.2s;
 }
 
-.resultsContainer {
-    display: flex;
-}
-
 .individualResult {
     background-color: var(--tertiary-colour);
     margin-left: 30%;
@@ -115,7 +111,7 @@ button:hover {
     padding: 1rem;
     border: #3D405B 0.2rem solid;
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
 }
 
 .imageDiv {

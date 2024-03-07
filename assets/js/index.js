@@ -1,7 +1,6 @@
 window.addEventListener('load', () => {
     const searchForm = document.querySelector('.search form');
     const searchInput = document.querySelector('#searchBar');
-    const searchButton = document.querySelector('#searchButton');
 
     saytCheck = true;
 
@@ -43,9 +42,6 @@ window.addEventListener('load', () => {
     });
         
 })
-
-
-
 
 function search(event, input) {
     event.preventDefault();
@@ -91,7 +87,6 @@ function search(event, input) {
 
     resultsContainer.appendChild(loading);
 
-
     fetch(URL)
         .then(response => response.json())
         .then(data => {
@@ -114,13 +109,13 @@ function search(event, input) {
 
                     //----------------------------------------------
 
-                    const imageDiv = document.createElement('div');
-                    imageDiv.classList.add('imageDiv');
-                    individualResult.appendChild(imageDiv);
-
                     const contentDiv = document.createElement('div');
                     contentDiv.classList.add('contentDiv');
                     individualResult.appendChild(contentDiv);
+
+                    const imageDiv = document.createElement('div');
+                    imageDiv.classList.add('imageDiv');
+                    individualResult.appendChild(imageDiv);
 
                     const extraDiv = document.createElement('div');
                     extraDiv.classList.add('extraDiv');
@@ -146,24 +141,13 @@ function search(event, input) {
                     resultImage.onload = () => {
                         imageDiv.appendChild(resultImage);
                         resultImage.alt = result.physicalDescription || 'No alt text avaliable, see below for a description of the record';
-                    }
-
-                    resultImage.onerror = () => {
-                        resultImage.src = 'assets/images/noImage.png';
-                        resultImage.classList.add('noImage');
-                        imageDiv.appendChild(resultImage);
-                        resultImage.alt = 'No image available';
-                    }
-
-                    if (result._images._primary_thumbnail) {
-
-                        resultImage.style.cursor = 'pointer';
 
                         const instruction = document.createElement('p');
                         instruction.textContent = 'Click image to expand';
                         imageDiv.appendChild(instruction);
 
-                            
+                        resultImage.classList.add('clickable');
+
                         resultImage.addEventListener('click', () => {
                             const popup = document.querySelector('.popup');
                             const bigImage = document.createElement('img');
@@ -179,6 +163,13 @@ function search(event, input) {
                             });
 
                         });
+                    }
+
+                    resultImage.onerror = () => {
+                        resultImage.src = 'assets/images/noImage.png';
+                        resultImage.classList.add('noImage');
+                        imageDiv.appendChild(resultImage);
+                        resultImage.alt = 'No image available';
                     }
     
                     //----------------------------------------------
@@ -224,7 +215,7 @@ function search(event, input) {
                     const expandButton = document.createElement('button');
                     expandButton.classList.add('expandButton');
                     expandButton.textContent = 'View more';
-                    contentDiv.appendChild(expandButton);
+                    individualResult.appendChild(expandButton);
                     expandButton.addEventListener('click', () => {
                         extraDiv.classList.toggle('hidden');
                         expandButton.textContent = extraDiv.classList.contains('hidden') ? 'View more' : 'View less';
@@ -253,7 +244,6 @@ async function SAYT(event,input) {
                 suggestions.textContent = 'No suggestions found';
                 resultsContainer.appendChild(suggestions);
             } else {
-
                 suggestions.textContent = 'Suggestions';
                 resultsContainer.appendChild(suggestions);
                 const instructions = document.createElement('p');
