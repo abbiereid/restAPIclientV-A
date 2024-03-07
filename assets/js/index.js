@@ -84,6 +84,17 @@ function search(event, input) {
 
     //----------------------------------------------
 
+    const popup = document.querySelector('#popup');
+    const close = document.querySelector('#close');
+
+    close.addEventListener('click', () => {
+        popup.classList.toggle('hidden');
+        if (popup.children[1]) {
+            popup.removeChild(popup.children[1]);
+        }
+    });
+
+    //----------------------------------------------
 
     resultsContainer.appendChild(loading);
 
@@ -156,11 +167,14 @@ function search(event, input) {
                             bigImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId + '/full/full/0/default.jpg';
 
                             bigImage.onload = () => {
-                                //work on popup for this
+                                popup.classList.toggle('hidden');
+                                popup.appendChild(bigImage);
                             }
 
                             bigImage.onerror = () => {
-                                //work on popup for this
+                                popup.classList.toggle('hidden');
+                                bigImage.src = 'assets/images/noImage.png';
+                                popup.appendChild(bigImage);
                             }
                         });
                     }
