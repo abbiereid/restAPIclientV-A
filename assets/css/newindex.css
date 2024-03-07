@@ -102,20 +102,23 @@ button:hover {
     transition: all 0.2s;
 }
 
+.flexContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
 .individualResult {
+    width: 25%;
     background-color: var(--tertiary-colour);
-    margin-left: 30%;
-    margin-right: 30%;
     margin-top: 1rem;
     border-radius: 0.5rem;
     padding: 1rem;
     border: #3D405B 0.2rem solid;
-    display: flex;
-    flex-direction: column;
 }
 
 .imageDiv img {
-    max-width: 150px;
+    border-radius: 0.5rem;
 }
 
 

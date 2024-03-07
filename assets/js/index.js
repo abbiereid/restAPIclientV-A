@@ -92,6 +92,7 @@ function search(event, input) {
         .then(data => {
 
             resultsContainer.textContent = '';
+            resultsContainer.classList.add('flexContainer');
 
             const results = data.records;
 
@@ -136,7 +137,7 @@ function search(event, input) {
 
                     const resultImage = new Image();
 
-                    resultImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId + '/full/full/0/default.jpg';
+                    resultImage.src = result._images._primary_thumbnail;
 
                     resultImage.onload = () => {
                         imageDiv.appendChild(resultImage);
@@ -150,18 +151,26 @@ function search(event, input) {
 
                         resultImage.addEventListener('click', () => {
                             const popup = document.querySelector('.popup');
-                            const bigImage = document.createElement('img');
-                            bigImage.src = resultImage.src;
-                            bigImage.classList.add('bigImage');
-                            popup.classList.remove('hidden');
-                            popup.appendChild(bigImage);
+                            const bigImage = new Image();
+                            bigImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId + '/full/full/0/default.jpg';
 
-                            const close = document.querySelector('.close');
-                            close.addEventListener('click', () => {
-                                popup.classList.add('hidden');
-                                popup.removeChild(bigImage);
-                            });
+                            bigImage.onload = () => {
+                                bigImage.classList.add('bigImage');
+                                popup.classList.remove('hidden');
+                                popup.appendChild(bigImage);
 
+                                const close = document.querySelector('.close');
+                                close.addEventListener('click', () => {
+                                    popup.classList.add('hidden');
+                                    popup.removeChild(bigImage);
+                                });
+                            }
+
+                            bigImage.onerror = () => {
+                                bigImage.src = 'assets/images/noImage.png';
+                                popup.appendChild(bigImage);
+                                bigImage.alt = 'No image available';
+                            }
                         });
                     }
 
@@ -236,6 +245,7 @@ function SAYT(event,input) {
             const results = data.records;
             const resultsContainer = document.querySelector('.results');
             resultsContainer.textContent = '';
+            resultsContainer.classList.remove('flexContainer');
 
             //suggestions heading
             const suggestions = document.createElement('h2');
