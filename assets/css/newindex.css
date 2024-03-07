@@ -105,11 +105,11 @@ button:hover {
 .flexContainer {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .individualResult {
-    width: 25%;
+    width: 20vw;
     background-color: var(--tertiary-colour);
     margin-top: 1rem;
     border-radius: 0.5rem;
@@ -119,6 +119,58 @@ button:hover {
 
 .imageDiv img {
     border-radius: 0.5rem;
+}
+
+
+@media (max-width: 575.98px) {
+
+    .individualResult {
+        width: 80vw;
+    }
+
+    #searchBox {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .individualResult {
+        width: 40vw;
+    }
+
+    #searchBox {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    .individualResult {
+        width: 30vw;
+    }
+
+    #searchBox {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}
+
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+    .individualResult {
+        width: 25vw;
+    }
+
+    #searchBox {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
 }
 
 

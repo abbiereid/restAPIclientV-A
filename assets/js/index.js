@@ -19,13 +19,6 @@ window.addEventListener('load', () => {
             }
         });
     }
-    
-
-    const filterButton = document.querySelector('#filterButton');
-    filterButton.addEventListener('click', () => {
-        const filterBox = document.querySelector('#filterBox');
-        filterBox.classList.toggle('hidden');
-    });
 
     const advancedButton = document.querySelector('#advancedButton');
     advancedButton.addEventListener('click', () => {
