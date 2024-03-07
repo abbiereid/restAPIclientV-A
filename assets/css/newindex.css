@@ -34,6 +34,12 @@ h2 {
     color: var(--secondary-colour);
 }
 
+p {
+    font-size: 1.1rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
 #searchBox {
     align-items: center;
     flex-direction: column;
@@ -121,6 +127,23 @@ button:hover {
     border-radius: 0.5rem;
 }
 
+.expanded {
+    height: 80%;
+    width: 80%;
+}
+
+
+#popup {
+
+}
+
+#closeButton {
+    float: right;
+    font-size: 2rem;
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+}
 
 @media (max-width: 575.98px) {
 

@@ -39,6 +39,8 @@ window.addEventListener('load', () => {
 function search(event, input) {
     event.preventDefault();
 
+    //building URL
+
     const englandFilter = document.querySelector('#England');
     const franceFilter = document.querySelector('#France');
     const germanyFilter = document.querySelector('#Germany');
@@ -72,13 +74,20 @@ function search(event, input) {
 
     URL += "&page_size=" + resultAmount.value;
 
-    console.log(URL);
+    //----------------------------------------------
+
+    //getting results container
 
     const resultsContainer = document.querySelector('.results');
     const loading = document.createElement('img');
     loading.src = 'assets/images/loading.gif';
 
+    //----------------------------------------------
+
+
     resultsContainer.appendChild(loading);
+
+    //----------------------------------------------
 
     fetch(URL)
         .then(response => response.json())
@@ -143,26 +152,15 @@ function search(event, input) {
                         resultImage.classList.add('clickable');
 
                         resultImage.addEventListener('click', () => {
-                            const popup = document.querySelector('.popup');
                             const bigImage = new Image();
                             bigImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId + '/full/full/0/default.jpg';
 
                             bigImage.onload = () => {
-                                bigImage.classList.add('bigImage');
-                                popup.classList.remove('hidden');
-                                popup.appendChild(bigImage);
-
-                                const close = document.querySelector('.close');
-                                close.addEventListener('click', () => {
-                                    popup.classList.add('hidden');
-                                    popup.removeChild(bigImage);
-                                });
+                                //work on popup for this
                             }
 
                             bigImage.onerror = () => {
-                                bigImage.src = 'assets/images/noImage.png';
-                                popup.appendChild(bigImage);
-                                bigImage.alt = 'No image available';
+                                //work on popup for this
                             }
                         });
                     }
@@ -221,6 +219,16 @@ function search(event, input) {
                     expandButton.addEventListener('click', () => {
                         extraDiv.classList.toggle('hidden');
                         expandButton.textContent = extraDiv.classList.contains('hidden') ? 'View more' : 'View less';
+
+                        const allResults = document.querySelectorAll('.individualResult');
+                        allResults.forEach(result => {
+                            if (result !== individualResult) {
+                                result.classList.toggle('hidden');
+                            }
+                        });
+
+                        individualResult.classList.toggle('expanded');
+
                     });
                 });
             }
