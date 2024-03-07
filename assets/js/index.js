@@ -90,6 +90,7 @@ function search(event, input) {
     close.addEventListener('click', () => {
         popup.classList.toggle('hidden');
         popup.children[1].remove();
+        resultsContainer.classList.toggle('hidden');
     });
 
     //----------------------------------------------
@@ -165,6 +166,7 @@ function search(event, input) {
                             bigImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId + '/full/full/0/default.jpg';
                             bigImage.classList.add('bigImage');
 
+                            resultsContainer.classList.toggle('hidden');
 
                             bigImage.onload = () => {
                                 popup.classList.toggle('hidden');
