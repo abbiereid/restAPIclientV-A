@@ -25,21 +25,13 @@ window.addEventListener('load', () => {
     const filterButton = document.querySelector('#filterButton');
     filterButton.addEventListener('click', () => {
         const filterBox = document.querySelector('#filterBox');
-        if (filterBox.classList.contains('hidden')) {
-            filterBox.classList.remove('hidden');
-        } else {
-            filterBox.classList.add('hidden');
-        }
+        filterBox.classList.toggle('hidden');
     });
 
     const advancedButton = document.querySelector('#advancedButton');
     advancedButton.addEventListener('click', () => {
         const options = document.querySelector('#searchOptions');
-        if (options.classList.contains('hidden')) {
-            options.classList.remove('hidden');
-        } else {
-            options.classList.add('hidden');
-        }
+        options.classList.toggle('hidden');
     });
 
     const clearButton = document.querySelector('#clearButton');
@@ -126,10 +118,14 @@ function search(event, input) {
                     imageDiv.classList.add('imageDiv');
                     individualResult.appendChild(imageDiv);
 
-                    //making an image div because of loading times, images move.
                     const contentDiv = document.createElement('div');
                     contentDiv.classList.add('contentDiv');
                     individualResult.appendChild(contentDiv);
+
+                    const extraDiv = document.createElement('div');
+                    extraDiv.classList.add('extraDiv');
+                    extraDiv.classList.add('hidden');
+                    individualResult.appendChild(extraDiv);
 
                     //----------------------------------------------
     
@@ -208,15 +204,19 @@ function search(event, input) {
 
                     const makerTitle = document.createElement('h3');
                     makerTitle.textContent = 'Created By';
+                    extraDiv.appendChild(makerTitle);
 
                     const resultMaker = document.createElement('p');
                     resultMaker.textContent = result._primaryMaker.name + ' , ' + result._primaryMaker.association || 'No maker available';
+                    extraDiv.appendChild(resultMaker);
 
                     const descTitle = document.createElement('h3');
                     descTitle.textContent = 'Description';
+                    extraDiv.appendChild(descTitle);
                     
                     const description = document.createElement('p');
                     description.textContent = result.summaryDescription || 'No description available';
+                    extraDiv.appendChild(description);
 
                     //----------------------------------------------
 
@@ -226,29 +226,9 @@ function search(event, input) {
                     expandButton.textContent = 'View more';
                     contentDiv.appendChild(expandButton);
                     expandButton.addEventListener('click', () => {
-                        contentDiv.appendChild(makerTitle);
-                        contentDiv.appendChild(resultMaker);
-                        contentDiv.appendChild(descTitle);
-                        contentDiv.appendChild(description);
-                        contentDiv.removeChild(expandButton);
-                        contentDiv.appendChild(minimiseButton);
+                        extraDiv.classList.toggle('hidden');
+                        expandButton.textContent = extraDiv.classList.contains('hidden') ? 'View more' : 'View less';
                     });
-
-                    //----------------------------------------------
-
-                    //result minimise button
-                    const minimiseButton = document.createElement('button');
-                    minimiseButton.classList.add('expandButton');
-                    minimiseButton.textContent = 'View less';
-                    minimiseButton.addEventListener('click', () => {
-                        contentDiv.removeChild(makerTitle);
-                        contentDiv.removeChild(resultMaker);
-                        contentDiv.removeChild(description);
-                        contentDiv.removeChild(descTitle);
-                        contentDiv.appendChild(expandButton);
-                        contentDiv.removeChild(minimiseButton);
-                    });
-    
                 });
             }
         })
