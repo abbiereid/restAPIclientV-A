@@ -2,23 +2,18 @@ window.addEventListener('load', () => {
     const searchForm = document.querySelector('.search form');
     const searchInput = document.querySelector('#searchBar');
 
-    saytCheck = true;
-
     searchForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        saytCheck = false;
         search(event, searchInput.value);
     });
 
 
-    if (saytCheck) {
-        searchForm.addEventListener('keyup', (event) => {
-            event.preventDefault();
-            if (searchInput.value.length >= 3) {
-                SAYT(event, searchInput.value);
-            }
-        });
-    }
+    searchForm.addEventListener('keyup', (event) => {
+        event.preventDefault();
+        if (searchInput.value.length >= 3) {
+            SAYT(event, searchInput.value);
+        }
+    });
 
     const advancedButton = document.querySelector('#advancedButton');
     advancedButton.addEventListener('click', () => {
@@ -31,7 +26,6 @@ window.addEventListener('load', () => {
         const resultsContainer = document.querySelector('.results');
         resultsContainer.textContent = '';
         searchInput.value = '';
-        saytCheck = true;
     });
         
 })
