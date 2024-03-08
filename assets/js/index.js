@@ -50,7 +50,7 @@ window.addEventListener('load', () => {
 function search(event, input) {
     event.preventDefault();
 
-    //building URL
+    //building the URL
 
     const englandFilter = document.querySelector('#England');
     const franceFilter = document.querySelector('#France');
@@ -263,11 +263,8 @@ function search(event, input) {
                 });
             }
         })
-        .catch(error => 
-            console.log(error),alert('There was a problem with the search, please try again later')
-            );
+        .catch(error => searchError(error));
 }
-
     
 
 function SAYT(event,input) {
@@ -311,9 +308,15 @@ function SAYT(event,input) {
                 });
             }
         })
-        .catch(error => 
-            console.log(error),
-            alert('There was a problem with finding suggestions')
-        );
+        .catch(error => alert(error));
 }
 
+function searchError(error) {
+    console.log(error);
+    const noResults = document.createElement('h2');
+    noResults.textContent = 'There has been a problem with your search, please try again';
+    noResults.classList.add('textError');
+    const resultsContainer = document.querySelector('.results');
+    resultsContainer.textContent = '';
+    resultsContainer.appendChild(noResults);
+}
