@@ -1,16 +1,32 @@
 window.addEventListener('load', () => {
     const searchForm = document.querySelector('.search form');
     const searchInput = document.querySelector('#searchBar');
+    
+    let SAYTcheck = true;
+
+    const error = document.querySelector('#searchBlank');
 
     searchForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        search(event, searchInput.value);
+        SAYTcheck = false;
+
+        if (searchInput.value.length == 0) {
+           if (error.classList.contains('hidden')) {
+               error.classList.remove('hidden');
+           }
+        } else {
+            search(event, searchInput.value);
+            if (!(error.classList.contains('hidden'))) {
+                error.classList.add('hidden');
+            }
+        }
+
     });
 
 
     searchForm.addEventListener('keyup', (event) => {
         event.preventDefault();
-        if (searchInput.value.length >= 3) {
+        if (SAYTcheck && searchInput.value.length >= 3) {
             SAYT(event, searchInput.value);
         }
     });
@@ -26,6 +42,7 @@ window.addEventListener('load', () => {
         const resultsContainer = document.querySelector('.results');
         resultsContainer.textContent = '';
         searchInput.value = '';
+        SAYTcheck = true;
     });
 
 })
