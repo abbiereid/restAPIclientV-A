@@ -10,14 +10,36 @@
     display: none !important; 
 }
 
+.hiddenLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
 .clickable {
     cursor: pointer !important;
+}
+
+html {
+    height: 100%;
 }
 
 body {
     background-color: var(--background-colour);
     font-family: "Noto Serif", serif;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+main {
+    flex-grow: 1;
 }
 
 h1 {
@@ -174,6 +196,25 @@ button:hover {
 .bigImage {
     max-width: 60vw;
     max-height: 80vh;
+}
+
+
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accent-colour);
 }
 
 

@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <title>V&A Musuem</title>
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     
 
     <main>
 
-    <div class="header">
+    <div class="header" role="banner">
         <h1>Victoria and Albert Museum</h1>
         <h2>Enjoy browsing the collection!</h2>
     </div>
 
-    <div id="searchBox">
+    <div id="searchBox" role="search">
 
         <div class ="search">
             <form>
                 <h2 class="hidden" id="searchBlank">Please enter a search term</h2>
+                <label for="searchBar" class="hiddenLabel">Search:</label>
                 <input id="searchBar" type="text" name="search" placeholder="Search..">
                 <button class="clickable" id="searchButton" type="submit">Search</button>
             </form>
@@ -83,12 +86,20 @@
     <div class="results"></div>
 
     <div class="hidden" id="popup">
-        <img src="assets/images/closeBtn.png" class="clickable" id="close">
+        <img src="assets/images/closeBtn.png" class="clickable" id="close" alt="Close button">
     </div>
 
     </main>
 
     <script src="assets/js/index.js"></script>
 
+    <footer>
+        
+        <p>The data on the website is sourced from the "Victoria and Albert Museum Collections API v2."</p>
+        <a href="https://developers.vam.ac.uk/">https://developers.vam.ac.uk/</a>
+
+    </footer>
+
 </body>
+
 </html>

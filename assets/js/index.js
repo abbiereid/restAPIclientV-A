@@ -122,6 +122,7 @@ function search(event, input) {
             if (results.length === 0) {
                 const noResults = document.createElement('h2');
                 noResults.textContent = 'No results found';
+                noResults.classList.add('textError');
                 resultsContainer.appendChild(noResults);
             } else {
                 results.forEach(result => {
