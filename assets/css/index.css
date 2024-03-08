@@ -1,9 +1,9 @@
 :root {
-    --primary-colour: #000000;
-    --secondary-colour: #f45757;
-    --tertiary-colour: #c9e2fa;
-    --background-colour: #cff1f3;
-    --accent-colour: #82ac98;
+    --primary-colour: #222523;
+    --secondary-colour: #1d5137;
+    --tertiary-colour: #efefdb;
+    --background-colour: #ededed;
+    --accent-colour: #e53131;
 }
 
 .hidden {
@@ -40,6 +40,11 @@ p {
     margin-right: 3rem;
 }
 
+.textError {
+    color: red;
+    margin: 3rem;
+}
+
 #searchBox {
     align-items: center;
     flex-direction: column;
@@ -56,14 +61,14 @@ p {
     border-radius: 48px;
     width: 60%;
     padding: 0.3rem;
-    border: 0.2rem solid var(--accent-colour);
+    border: 0.2rem solid var(--primary-colour);
     margin-top: 3rem;
     margin-bottom: 0.5rem;
 }
 
 #searchBar:focus {
     outline: none;
-    border: #3D405B 0.2rem solid;
+    border: var(--accent-colour) 0.2rem solid;
 }
 
 #searchOptions {
@@ -77,7 +82,6 @@ p {
 
 button {
     background-color: var(--accent-colour);
-    border: solid 0.1rem var(--accent-colour);
     color: var(--primary-colour);
     text-align: center;
     font-size: 1.2rem;
@@ -86,12 +90,14 @@ button {
     margin: 0.5rem;
     transition: all 0.3s;
     font-weight: bolder;
+    color: white;
+    border: none;
 }
 
 button:hover {
     background-color: var(--secondary-colour);
-    color: var(--primary-colour);
-    border: solid 0.1rem var(--secondary-colour);
+    color: white;
+    transition: all 0.3s;
 }
 
 #searchButton {
@@ -144,7 +150,7 @@ button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: var(--accent-colour);
+    background-color: var(--tertiary-colour);
     height: fit-content;
     width: fit-content;
     border: var(--primary-colour) 0.2rem solid;
@@ -164,11 +170,6 @@ button:hover {
     max-height: 80vh;
 }
 
-.textError {
-    color: red;
-    font-size: 1.5rem;
-    margin-top: 1rem;
-}
 
 @media (max-width: 575.98px) {
 

@@ -27,7 +27,7 @@ window.addEventListener('load', () => {
         resultsContainer.textContent = '';
         searchInput.value = '';
     });
-        
+
 })
 
 function search(event, input) {
