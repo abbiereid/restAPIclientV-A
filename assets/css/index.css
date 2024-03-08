@@ -229,6 +229,14 @@ a:hover {
         margin-right: 5%;
     }
 
+    #searchBar {
+        width: 80%;
+    }
+
+    footer {
+        font-size: small;
+    }
+
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -240,6 +248,10 @@ a:hover {
     #searchBox {
         margin-left: 10%;
         margin-right: 10%;
+    }
+
+    #searchBar {
+        width: 70%;
     }
 }
 
@@ -254,6 +266,10 @@ a:hover {
         margin-left: 15%;
         margin-right: 15%;
     }
+
+    #searchBar {
+        width: 60%;
+    }
 }
 
 
@@ -266,6 +282,10 @@ a:hover {
     #searchBox {
         margin-left: 20%;
         margin-right: 20%;
+    }
+
+    #searchBar {
+        width: 50%;
     }
 }
 
