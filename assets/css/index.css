@@ -111,7 +111,7 @@ button:hover {
 }
 
 .suggestionTitle:hover {
-    color: var(--secondary-colour);
+    color: var(--accent-colour);
     transition: all 0.2s;
 }
 
