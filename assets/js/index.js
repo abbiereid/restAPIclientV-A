@@ -55,7 +55,7 @@ function search(event, input) {
     const englandFilter = document.querySelector('#England');
     const franceFilter = document.querySelector('#France');
     const germanyFilter = document.querySelector('#Germany');
-    const resultAmount = document.querySelector('.resultAmount');
+    const resultAmount = document.querySelector('#resultAmount');
 
     let URL = 'https://api.vam.ac.uk/v2/objects/search?q=' + input;
 
