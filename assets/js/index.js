@@ -177,6 +177,7 @@ function search(event, input) {
                             const bigImage = new Image();
                             bigImage.src = 'https://framemark.vam.ac.uk/collections/'+ result._primaryImageId + '/full/full/0/default.jpg';
                             bigImage.classList.add('bigImage');
+                            bigImage.alt = resultImage.alt;
 
                             resultsContainer.classList.toggle('hidden');
 
