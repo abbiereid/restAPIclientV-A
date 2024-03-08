@@ -263,8 +263,12 @@ function search(event, input) {
                 });
             }
         })
-        .catch(error => alert(error));
+        .catch(error => 
+            console.log(error),alert('There was a problem with the search, please try again later')
+            );
 }
+
+    
 
 function SAYT(event,input) {
     event.preventDefault();
@@ -307,5 +311,9 @@ function SAYT(event,input) {
                 });
             }
         })
-        .catch(error => alert(error));
+        .catch(error => 
+            console.log(error),
+            alert('There was a problem with finding suggestions')
+        );
 }
+
